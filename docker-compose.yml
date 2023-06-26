@@ -1,0 +1,52 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      tags:
+        - psd:0.4
+    command: gunicorn poker_stats_data.wsgi:application --bind 0.0.0.0:8000
+#    command: python manage.py migrate && gunicorn poker_stats_data.wsgi:application --bind 0.0.0.0:8000
+
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+
+    volumes:
+      - ./.postgres/postgres_data/psd:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  nginx:
+    image: nginx:stable-alpine3.17-slim
+
+    depends_on:
+      - web
+    ports:
+      - "80:80"
+#
+#  nginx:
+#    build:
+#      dockerfile: ./Dockerfile
+#      context: ./nginx_conf/
+#    container_name: psd_nginx
+#    image: psd_nginx
+#
+#    depends_on:
+#      - web
+#    ports:
+#      - "80"
+
+
