@@ -56,7 +56,8 @@ services:
       context: ./nginx_conf/
     container_name: psd_nginx
     image: psd_nginx
-
+    volumes:
+      - static_volume:/app/static/
     depends_on:
       - web
     ports:
