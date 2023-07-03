@@ -12,8 +12,8 @@ services:
 
     volumes:
       - .:/app
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
     depends_on:
       - db
     env_file:
@@ -37,6 +37,19 @@ services:
 #    ports:
 #      - "80:80"
 
+#  nginx:
+#    build:
+#      dockerfile: ./Dockerfile
+#      context: ./nginx_conf/
+#    container_name: psd_nginx
+#    image: psd_nginx
+#
+#    depends_on:
+#      - web
+#    ports:
+#      - "80"
+
+
   nginx:
     build:
       dockerfile: ./Dockerfile
@@ -47,6 +60,8 @@ services:
     depends_on:
       - web
     ports:
-      - "80"
+      - "1337:80"
 
-
+volumes:
+  postgres_data:
+  static_volume:

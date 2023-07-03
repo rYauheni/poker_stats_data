@@ -7,7 +7,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 RUN pip install --upgrade pip
 
 WORKDIR /app
-# RUN mkdir static
+RUN mkdir static
 #
 COPY . /app
 # COPY /transfiguration_data/static/ /app/static/
