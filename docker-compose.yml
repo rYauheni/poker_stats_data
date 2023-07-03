@@ -29,24 +29,24 @@ services:
       - ./.postgres/postgres_data/psd:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-  nginx:
-    image: nginx:stable-alpine3.17-slim
-
-    depends_on:
-      - web
-    ports:
-      - "80:80"
-#
 #  nginx:
-#    build:
-#      dockerfile: ./Dockerfile
-#      context: ./nginx_conf/
-#    container_name: psd_nginx
-#    image: psd_nginx
+#    image: nginx:stable-alpine3.17-slim
 #
 #    depends_on:
 #      - web
 #    ports:
-#      - "80"
+#      - "80:80"
+
+  nginx:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./nginx_conf/
+    container_name: psd_nginx
+    image: psd_nginx
+
+    depends_on:
+      - web
+    ports:
+      - "80"
 
 
