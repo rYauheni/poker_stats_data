@@ -11,7 +11,8 @@ services:
 #    command: python manage.py migrate && gunicorn poker_stats_data.wsgi:application --bind 0.0.0.0:8000
 
     volumes:
-      - .:/app
+#      - .:/app
+      - static_volume:/app/static/
     expose:
       - "8000"
     depends_on:
