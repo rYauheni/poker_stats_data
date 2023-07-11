@@ -19,20 +19,5 @@ RUN pip install -r requirements.txt
 
 EXPOSE 8000
 
-RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput --settings=poker_stats_data.settings.prod
 
-# CMD ["sh", "-c", "python manage.py collectstatic --noinput"]
-
-# FROM python:3.8.10-slim
-#
-# RUN mkdir /app
-# WORKDIR app
-#
-# ADD requirements.txt /app/
-# RUN pip install -r requirements.txt
-# ADD . /app/
-#
-# RUN pip3 install -r requirements.txt
-#
-#
-# CMD gunicorn poker_stats_data.wsgi:application -b 0.0.0.0:8000
