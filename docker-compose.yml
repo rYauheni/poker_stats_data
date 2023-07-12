@@ -8,10 +8,8 @@ services:
       tags:
         - psd:0.4
     command: gunicorn poker_stats_data.wsgi:application --bind 0.0.0.0:8000 --env DJANGO_SETTINGS_MODULE=poker_stats_data.settings.prod
-#    command: python manage.py migrate && gunicorn poker_stats_data.wsgi:application --bind 0.0.0.0:8000
 
     volumes:
-#      - .:/app
       - static_volume:/app/static/
     expose:
       - "8000"
