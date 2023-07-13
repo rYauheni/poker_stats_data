@@ -30,16 +30,18 @@ ___
 
 ## Installation
 
-Run the following commands to bootstrap your environment:
+Run the following commands to bootstrap your environment (for Windows cmd):
 
 ```commandline
 git clone https://github.com/rYauheni/poker_stats_data.git
 
-python3 -m venv venv
-source venv/bin/activate
-pip3 install -r requirements.txt
+python -m venv venv
+venv\Scripts\activate
 
-cp .env.template .env
+pip install -r requirements.txt
+
+copy .env.template .env
+
 ```
 
 ___
@@ -52,7 +54,7 @@ ___
 2. Run the app locally:
 
    ```commandline
-   python3 manage.py runserver 0.0.0.0:8000 --settings=poker_stats_data.settings.dev
+   python manage.py runserver 0.0.0.0:8000 --settings=poker_stats_data.settings.dev
    ```
 
 3. Run the app with gunicorn:
@@ -101,4 +103,4 @@ ___
 
 ## License
 
-The app is dedicated to the public domain under the CC0 license.
+The app is dedicated to the public domain under the CC0 license
